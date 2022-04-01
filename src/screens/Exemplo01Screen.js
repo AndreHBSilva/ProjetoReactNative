@@ -5,7 +5,7 @@ import {
   View,
   TextInput,
   FlatList,
-  Pressable
+  Pressable,
 } from 'react-native';
 
 const Exemplo01Screen = ({ navigation }) => {
@@ -14,34 +14,38 @@ const Exemplo01Screen = ({ navigation }) => {
     'Miojo Nissin Lamen',
     'Sucrilhos',
     'Cerveja',
-    'Coca-Cola'
+    'Coca-Cola',
   ]);
 
   const ItemComprar = ({ item, index }) => {
-    console.log(JSON.stringify(item));
+    // console.log(JSON.stringify(item));
+    // console.log(JSON.stringify(index));
     return (
-      <Pressable onPress={() => handleRemoveItem(index)} style={styles.itemComprar}>
+      <Pressable
+        onPress={() => handleRemoveItem(item.index)}
+        style={styles.itemComprar}
+      >
         <Text>{item.item}</Text>
       </Pressable>
     );
-  }
+  };
 
   const handleAdicionar = () => {
     if (textInputComprar === '') {
-      return
+      return;
     }
-    setListComprar(previous => [...previous, textInputComprar]);
+    setListComprar((previous) => [...previous, textInputComprar]);
     setTextInputComprar('');
-  }
+  };
 
-  const handleRemoveItem = index => {
+  const handleRemoveItem = (index) => {
     if (index > -1) {
       let temp = [...listComprar];
-      temp = temp.slice(index, 1);
+      temp.splice(index, 1);
       console.log(temp);
       setListComprar(temp);
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -57,7 +61,7 @@ const Exemplo01Screen = ({ navigation }) => {
       <Pressable style={styles.button} onPress={() => navigation.goBack(null)}>
         <Text style={styles.buttonText}>Voltar</Text>
       </Pressable>
-      <FlatList 
+      <FlatList
         data={listComprar}
         extraData={listComprar}
         style={styles.listComprar}
@@ -65,15 +69,15 @@ const Exemplo01Screen = ({ navigation }) => {
         keyExtractor={(item, index) => index}
       />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 16
+    padding: 16,
   },
   textInput: {
     width: '100%',
@@ -81,17 +85,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#ccc',
     borderRadius: 20,
     paddingHorizontal: 16,
-    marginBottom: 8
+    marginBottom: 8,
   },
   listComprar: {
-    width: '100%'
+    width: '100%',
   },
   itemComprar: {
     width: '100%',
     backgroundColor: '#ccc',
     paddingHorizontal: 16,
     paddingVertical: 8,
-    marginBottom: 8
+    marginBottom: 8,
   },
   button: {
     alignItems: 'center',
@@ -102,11 +106,11 @@ const styles = StyleSheet.create({
     elevation: 3,
     backgroundColor: '#ee125a',
     marginBottom: 8,
-    width: '100%'
+    width: '100%',
   },
   buttonText: {
-    color: 'white'
-  }
-})
+    color: 'white',
+  },
+});
 
 export default Exemplo01Screen;
