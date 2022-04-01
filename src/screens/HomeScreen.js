@@ -40,6 +40,10 @@ const HomeScreen = ({navigation, route}) => {
                 <Pressable style={styles.button} onPress={handleAlert}>
                     <Text style={styles.buttonText}>TextInput e States</Text>
                 </Pressable>
+
+                <Pressable style={styles.button} onPress={() => navigation.navigate('Exemplo01')}>
+                    <Text style={styles.buttonText}>Tela Exemplo 01</Text>
+                </Pressable>
             </ImageBackground>
         </View>
     );
